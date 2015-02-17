@@ -55,11 +55,16 @@ class TicTacToe
     p1 = Player.new("Player 1", "X")
     p2 = Player.new("Player 2", "O")
     self.draw_board
+    moves = 0
     while true
       self.turn(p1)
+      moves += 1
       self.draw_board
       if self.win?(p1)
         puts "#{p1.name} wins"
+        break
+      elsif moves == 5
+        puts "It's a tie."
         break
       end
       self.turn(p2)
