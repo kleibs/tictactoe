@@ -36,6 +36,21 @@ class TicTacToe
     @board[move] = player.symbol
   end
 
+ def win?(player)
+  if @board[1] + @board[2] + @board[3] == player.symbol * 3 || 
+     @board[4] + @board[5] + @board[6] == player.symbol * 3 || 
+     @board[7] + @board[8] + @board[9] == player.symbol * 3 || 
+     @board[1] + @board[4] + @board[7] == player.symbol * 3 || 
+     @board[2] + @board[5] + @board[8] == player.symbol * 3 || 
+     @board[3] + @board[6] + @board[9] == player.symbol * 3 || 
+     @board[3] + @board[5] + @board[7] == player.symbol * 3 || 
+     @board[1] + @board[5] + @board[9] == player.symbol * 3
+    return true
+  else
+    false
+  end
+  end
+
   def start
     p1 = Player.new("Player 1", "X")
     p2 = Player.new("Player 2", "O")
@@ -43,8 +58,16 @@ class TicTacToe
     while true
       self.turn(p1)
       self.draw_board
+      if self.win?(p1)
+        puts "#{p1.name} wins"
+        break
+      end
       self.turn(p2)
       self.draw_board
+      if self.win?(p2)
+        puts "#{p2.name} wins"
+        break
+      end
     end
   end
 
