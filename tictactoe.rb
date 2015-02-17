@@ -30,9 +30,16 @@ class TicTacToe
   end
 
   def turn(player)
-    print "#{player.name}, choose a square: "
-    move = gets.chomp.to_i
-    puts "\n"
+    legal_move = false
+    while !legal_move
+      print "#{player.name}, choose a square: "
+      move = gets.chomp.to_i
+      if @board[move] == " "
+        legal_move = true
+      else
+        puts "That square is already taken!"
+      end
+    end
     @board[move] = player.symbol
   end
 
