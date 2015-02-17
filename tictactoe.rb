@@ -14,8 +14,41 @@ class TicTacToe
       puts "#{@board[7]} | #{@board[8]} | #{@board[9]}"
   end
 
+  class Player
+    def initialize(name, symbol)
+      @name = name
+      @symbol = symbol
+    end
+
+    def name
+      @name
+    end
+
+    def symbol
+      @symbol
+    end
+  end
+
+  def turn(player)
+    print "#{player.name}, choose a square: "
+    move = gets.chomp.to_i
+    puts "\n"
+    @board[move] = player.symbol
+  end
+
+  def start
+    p1 = Player.new("Player 1", "X")
+    p2 = Player.new("Player 2", "O")
+    self.draw_board
+    while true
+      self.turn(p1)
+      self.draw_board
+      self.turn(p2)
+      self.draw_board
+    end
+  end
 
 end
 
 game = TicTacToe.new
-game.draw_board
+game.start
